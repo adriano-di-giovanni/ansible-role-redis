@@ -1,0 +1,16 @@
+galaxy_info:
+  author: Adriano Di Giovanni
+
+  description: Ansible role for Redis
+
+  license: MIT
+
+  min_ansible_version: 2.0
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+
+  galaxy_tags:
+    - redis

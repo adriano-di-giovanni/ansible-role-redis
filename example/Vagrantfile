@@ -1,0 +1,13 @@
+VAGRANT_API_VERSION = '2'
+
+Vagrant.configure(VAGRANT_API_VERSION) do |config|
+  config.vm.box = 'ubuntu/trusty64'
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = 'playbook.yml'
+    ansible.verbose = true
+  end
+  config.vm.provider :virtualbox do |virtualbox|
+    virtualbox.memory = 1024
+    virtualbox.cpus = 1 # https://github.com/antirez/redis/issues/2715
+  end
+end

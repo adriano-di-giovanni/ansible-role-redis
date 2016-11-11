@@ -1,0 +1,29 @@
+include /etc/redis/redis.conf
+
+daemonize yes
+
+dir /var/lib/redis/{{ redis_port }}
+logfile /var/log/redis/{{ redis_port }}.log
+pidfile /var/run/redis/{{ redis_port }}.pid
+
+bind {{ redis_bind }}
+port {{ redis_port }}
+
+{% if redis_requirepass is defined %}
+  requirepass {{ redis_requirepass }}
+{% endif %}
+
+maxclients {{ filemax_result.stdout_lines[0] }}
+
+maxmemory {{
+  ((redis_maxmemory_percentage / 100) * (ansible_memtotal_mb * 1024 * 1024)) |
+  round | int | abs
+}}
+
+save ""
+
+appendonly no
+
+{% for include in redis_includes %}
+include {{ include }}
+{% endfor %}

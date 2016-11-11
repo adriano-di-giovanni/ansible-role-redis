@@ -1,0 +1,28 @@
+---
+redis_version: stable
+redis_archive: 'redis-{{ redis_version }}.tar.gz'
+redis_archive_url: 'http://download.redis.io/releases/{{ redis_archive }}'
+
+redis_download_dir: /tmp
+redis_download_file: '{{ redis_download_dir }}/{{ redis_archive }}'
+redis_source_dir: '{{ redis_download_file | regex_replace("\.tar\.gz$", "") }}'
+
+redis_group: redis
+redis_user: redis
+
+redis_port: 6379
+redis_bind: 127.0.0.1
+
+# how much of the system memory Redis can use?
+redis_maxmemory_percentage: 70
+
+# this is used to set common configuration directives such as `daemonize yes`
+# we prefer this over modifying the default configuration file
+redis_conf_template_file: redis.conf.j2
+redis_conf_file: '/etc/redis/{{ redis_port }}.conf'
+
+redis_init_script_template_file: redis.j2
+redis_init_script_file: '/etc/init.d/redis-{{ redis_port }}'
+
+# list of paths to include files
+redis_includes: []
