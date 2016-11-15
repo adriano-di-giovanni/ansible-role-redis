@@ -10,6 +10,8 @@ shipped into the distribution
 **IMPORTANT** RDB and AOF are disabled by default. Override configuration
 directives using `redis_includes` variable in your tasks.
 
+**IMPORTANT** Don't rename/disable `SHUTDOWN` command. It's used by the init script.
+
 ## Requirements
 
 None.
