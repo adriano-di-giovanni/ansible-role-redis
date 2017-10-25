@@ -80,7 +80,7 @@ None.
     - adriano-di-giovanni.redis
 ```
 
-The example/ folder contain project files to provision an Ubuntu Trusty VM using Vagrant and VirtualBox.
+The `example-*/`` folders contain project files to provision VMs using Vagrant and VirtualBox.
 
 ## License
 
