@@ -60,7 +60,7 @@ None.
       <td>Redis will listen for connections from selected interfaces.</td>
     </tr>
     <tr>
-      <td>redis_requirepasse</td>
+      <td>redis_requirepass</td>
       <td>no</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
