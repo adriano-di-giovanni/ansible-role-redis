@@ -1,0 +1,15 @@
+---
+  - name: copy redis.conf shipped into the Redis distribution
+    copy:
+      src: '{{ redis_source_dir }}/redis.conf'
+      remote_src: true
+      dest: /etc/redis/redis.conf
+      owner: '{{ redis_user }}'
+      group: '{{ redis_group }}'
+
+  - name: copy the default configuration file
+    template:
+      src: '{{ redis_conf_template_file }}'
+      dest: '{{ redis_conf_file }}'
+      owner: '{{ redis_user }}'
+      group: '{{ redis_group }}'

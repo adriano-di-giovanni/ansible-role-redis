@@ -1,0 +1,10 @@
+---
+  - include_vars: '{{ ansible_distribution_release }}.yml'
+  - name: setup service
+    template:
+      src: '{{ redis_init_script_template_file }}'
+      dest: '{{ redis_init_script_file }}'
+      mode: 0755
+      owner: root
+      group: root
+    notify: restart redis

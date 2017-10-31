@@ -4,6 +4,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
   config.vm.box = 'ubuntu/xenial64'
   config.vm.provision :ansible do |ansible|
     ansible.playbook = 'playbook.yml'
+    ansible.extra_vars = { ansible_python_interpreter: "/usr/bin/python3" }
     ansible.verbose = true
   end
   config.vm.provider :virtualbox do |virtualbox|

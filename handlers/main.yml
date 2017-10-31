@@ -1,3 +1,12 @@
 ---
+- name: disable transparent huge pages
+  service:
+    name: thp-never
+    state: restarted
+    enabled: yes
+
 - name: restart redis
-  service: name=redis-{{ redis_port }} state=restarted enabled=yes
+  service:
+    name: '{{ redis_service_name }}'
+    state: restarted
+    enabled: yes

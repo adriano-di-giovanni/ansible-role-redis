@@ -1,10 +1,11 @@
 ---
-redis_version: stable
+redis_version: 4.0.2
 redis_archive: 'redis-{{ redis_version }}.tar.gz'
 redis_archive_url: 'http://download.redis.io/releases/{{ redis_archive }}'
 
 redis_download_dir: /tmp
 redis_download_file: '{{ redis_download_dir }}/{{ redis_archive }}'
+redis_download_checksum: sha256:b1a0915dbc91b979d06df1977fe594c3fa9b189f1f3d38743a2948c9f7634813
 redis_source_dir: '{{ redis_download_file | regex_replace("\.tar\.gz$", "") }}'
 
 redis_group: redis
@@ -21,8 +22,9 @@ redis_maxmemory_percentage: 70
 redis_conf_template_file: redis.conf.j2
 redis_conf_file: '/etc/redis/{{ redis_port }}.conf'
 
-redis_init_script_template_file: redis.j2
-redis_init_script_file: '/etc/init.d/redis-{{ redis_port }}'
+redis_service_name: 'redis-{{ redis_port }}'
+
+redis_rename_commands: []
 
 # list of paths to include files
 redis_includes: []

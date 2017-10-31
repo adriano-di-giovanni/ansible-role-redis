@@ -1,0 +1,3 @@
+---
+redis_init_script_template_file: redis.j2
+redis_init_script_file: '/etc/init.d/{{ redis_service_name }}'

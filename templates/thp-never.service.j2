@@ -1,0 +1,10 @@
+[Unit]
+Before={{ redis_service_name }}
+Description=Disable Transparent Huge Pages
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/hugeadm --thp-never
+
+[Install]
+WantedBy=multi-user.target

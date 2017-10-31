@@ -1,0 +1,36 @@
+---
+  # this could become a role
+  - name: configure pam
+    lineinfile:
+      create: true
+      dest: /etc/pam.d/common-session
+      line: session required pam_limits.so
+
+    # this could become a role
+  - name: read /proc/sys/fs/file-max
+    shell: cat /proc/sys/fs/file-max
+    register: filemax_result
+
+    # this could become a role
+  - name: set nofile for redis user
+    pam_limits:
+      domain: '{{ redis_user }}'
+      limit_type: '{{ item }}'
+      limit_item: nofile
+      value: '{{ filemax_result.stdout_lines[0] }}'
+    with_items:
+      - soft
+      - hard
+
+  - name: manipulate sysctl entries
+    sysctl:
+      name: '{{ item.name }}'
+      value: '{{ item.value }}'
+      state: present
+    with_items:
+      - name: vm.overcommit_memory
+        value: 1 # http://redis.io/topics/faq
+      - name: net.core.somaxconn
+        value: 1024 # arbitrary. Should be gte tcp_backlog in redis.conf (511)
+      - name: net.ipv4.tcp_max_syn_backlog
+        value: 1024 # arbitrary. Should be gte tcp_backlog in redis.conf (511)

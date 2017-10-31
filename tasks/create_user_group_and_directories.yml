@@ -1,0 +1,41 @@
+---
+  - name: create redis group
+    group:
+      name: '{{ redis_group }}'
+      system: yes
+      state: present
+
+  - name: create redis user
+    user:
+      name: '{{ redis_user }}'
+      group: '{{ redis_group }}'
+      system: yes
+      state: present
+
+  - name: create directory structure
+    file:
+      state: directory
+      path: '{{ item }}'
+      owner: '{{ redis_user }}'
+      group: '{{ redis_group }}'
+      mode: 0755
+    with_items:
+      - /etc/redis
+      - /var/log/redis
+      - '/var/lib/redis/{{ redis_port }}'
+      - /var/run/redis # default pidfile directory in redis.conf
+
+    # we need to lookup files to set ownership on because `with_fileglob` works
+    # with local files and not remote ones
+  - name: lookup files to set ownership on
+    shell: ls -al /usr/local/bin | grep '^redis-' | awk '{print $9}'
+    register: lookup_result
+
+  - name: set ownership
+    file:
+      path: '/usr/local/bin/{{ item }}'
+      state: file
+      follow: no
+      owner: '{{ redis_user }}'
+      group: '{{ redis_group }}'
+    with_items: '{{ lookup_result.stdout_lines }}'

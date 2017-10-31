@@ -7,6 +7,8 @@ Ansible role for Redis:
 * configures Redis using include files instead of modifying the `redis.conf`
 shipped into the distribution
 
+It's meant to be run on Ubuntu 64-bit, Trusty and Xenial, machines.
+
 **IMPORTANT** RDB and AOF are disabled by default. Override configuration
 directives using `redis_includes` variable in your tasks.
 
@@ -32,9 +34,16 @@ None.
     <tr>
       <td>redis_version</td>
       <td>no</td>
-      <td>stable</td>
+      <td>4.0.2</td>
       <td>&nbsp;</td>
       <td>Version of Redis to install</td>
+    </tr>
+    <tr>
+      <td>redis_download_checksum</td>
+      <td>no</td>
+      <td>sha256:b1a0915dbc91b979d06df1977fe594c3fa9b189f1f3d38743a2948c9f7634813</td>
+      <td>&nbsp;</td>
+      <td>Download file checksum. See https://github.com/antirez/redis-hashes</td>
     </tr>
     <tr>
       <td>redis_port</td>
@@ -49,6 +58,13 @@ None.
       <td>127.0.0.1</td>
       <td>&nbsp;</td>
       <td>Redis will listen for connections from selected interfaces.</td>
+    </tr>
+    <tr>
+      <td>redis_requirepasse</td>
+      <td>no</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>redis_maxmemory_percentage</td>

@@ -1,3 +1,10 @@
 ---
-- include: install.yml
-- service: name=redis-{{ redis_port }} state=restarted enabled=yes
+  - include_tasks: install_dependencies.yml
+  - include_tasks: download_and_extract_source_code.yml
+  - include_tasks: compile_and_install.yml
+  - include_tasks: create_user_group_and_directories.yml
+  - include_tasks: tune_os.yml
+  - include_tasks: configure.yml
+  - include_tasks: disable_transparent_huge_pages.yml
+    when: ansible_distribution_release == 'xenial'
+  - include_tasks: setup_service.yml

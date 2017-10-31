@@ -18,6 +18,11 @@ CONF="/etc/redis/${REDISPORT}.conf"
 
 case "$1" in
     start)
+        if [ -n "$(which hugeadm)" ]
+        then
+          hugeadm --thp-never
+        fi
+
         if [ -f $PIDFILE ]
         then
                 echo "$PIDFILE exists, process is already running or crashed"

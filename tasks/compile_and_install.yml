@@ -1,0 +1,9 @@
+---
+  - name: compile, test and install
+    make:
+      chdir: '{{ redis_source_dir }}'
+      target: '{{ item }}'
+    with_items:
+      -
+      - test
+      - install

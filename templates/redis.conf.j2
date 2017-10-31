@@ -24,6 +24,10 @@ save ""
 
 appendonly no
 
+{% if ansible_distribution_release == "xenial" %}
+supervised systemd
+{% endif %}
+
 {% for include in redis_includes %}
 include {{ include }}
 {% endfor %}
