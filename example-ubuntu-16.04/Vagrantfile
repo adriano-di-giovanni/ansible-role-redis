@@ -1,9 +1,10 @@
 VAGRANT_API_VERSION = '2'
 
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
-  config.vm.box = 'ubuntu/trusty64'
+  config.vm.box = 'bento/ubuntu-16.04'
   config.vm.provision :ansible do |ansible|
     ansible.playbook = 'playbook.yml'
+    ansible.extra_vars = { ansible_python_interpreter: "/usr/bin/python3" }
     ansible.verbose = true
   end
   config.vm.provider :virtualbox do |virtualbox|
