@@ -15,3 +15,7 @@
 
 * Rollback to previous setup for PID file
 * Add `ExecStartPre` directive to create `/var/run/redis` and set ownership.
+
+## 0.5.0 (2017-11-13)
+
+* Absolute path to `mkdir` and `chown`
