@@ -19,3 +19,7 @@
 ## 0.5.0 (2017-11-13)
 
 * Absolute path to `mkdir` and `chown`
+
+## 0.6.0 (2017-11-13)
+
+* Use two `ExecStartPre` directive instances to execute `mkdir` and `chown`
