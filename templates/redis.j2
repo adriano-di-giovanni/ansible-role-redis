@@ -12,7 +12,7 @@ REDISPWD={{ redis_requirepass }}
 EXEC=/usr/local/bin/redis-server
 CLIEXEC=/usr/local/bin/redis-cli
 
-PIDFILE=/var/run/redis/${REDISPORT}.pid
+PIDFILE=/var/run/redis-${REDISPORT}.pid
 PIDDIR=`dirname "${PIDFILE}"`
 CONF="/etc/redis/${REDISPORT}.conf"
 

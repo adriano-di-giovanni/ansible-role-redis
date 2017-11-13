@@ -23,7 +23,6 @@
       - /etc/redis
       - /var/log/redis
       - '/var/lib/redis/{{ redis_port }}'
-      - /var/run/redis # default pidfile directory in redis.conf
 
     # we need to lookup files to set ownership on because `with_fileglob` works
     # with local files and not remote ones

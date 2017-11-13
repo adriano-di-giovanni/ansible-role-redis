@@ -4,7 +4,7 @@ daemonize yes
 
 dir /var/lib/redis/{{ redis_port }}
 logfile /var/log/redis/{{ redis_port }}.log
-pidfile /var/run/redis/{{ redis_port }}.pid
+pidfile /var/run/redis-{{ redis_port }}.pid
 
 bind {{ redis_bind }}
 port {{ redis_port }}
