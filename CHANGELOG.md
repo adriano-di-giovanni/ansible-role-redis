@@ -10,3 +10,8 @@
 ## 0.3.0 (2017-11-13)
 
 * Move PID file from `/var/run/redis` to `/var/run`
+
+## 0.4.0 (2017-11-13)
+
+* Rollback to previous setup for PID file
+* Add `ExecStartPre` directive to create `/var/run/redis` and set ownership.

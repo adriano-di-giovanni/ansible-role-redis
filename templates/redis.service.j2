@@ -3,10 +3,12 @@ After=network.target
 Description=Redis
 
 [Service]
+PermissionsStartOnly=true
+ExecStartPre=mkdir -p /var/run/redis && chown {{ redis_user }}:{{ redis_group }} /var/run/redis
 ExecStart=/usr/local/bin/redis-server {{ redis_conf_file }}
 ExecStop=/usr/local/bin/redis-cli shutdown
 Group=redis
-PIDFile=/var/run/redis-{{ redis_port }}.pid
+PIDFile=/var/run/redis/{{ redis_port }}.pid
 Restart=always
 Type=forking
 User=redis
