@@ -23,3 +23,8 @@
 ## 0.6.0 (2017-11-13)
 
 * Use two `ExecStartPre` directive instances to execute `mkdir` and `chown`
+
+## 0.7.0 (2019-02-01)
+
+* Do not default redis_maxmemory_percentage to 70
+* add `LimitNOFILE` to systemd script

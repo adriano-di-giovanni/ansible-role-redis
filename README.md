@@ -69,7 +69,7 @@ None.
     <tr>
       <td>redis_maxmemory_percentage</td>
       <td>no</td>
-      <td>70</td>
+      <td>&nbsp;</td>
       <td>no</td>
       <td>Redis will use at most this percentage of system memory</td>
     </tr>

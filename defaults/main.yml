@@ -15,7 +15,7 @@ redis_port: 6379
 redis_bind: 127.0.0.1
 
 # how much of the system memory Redis can use?
-redis_maxmemory_percentage: 70
+# redis_maxmemory_percentage: 70
 
 # this is used to set common configuration directives such as `daemonize yes`
 # we prefer this over modifying the default configuration file

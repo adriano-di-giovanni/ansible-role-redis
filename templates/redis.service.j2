@@ -9,6 +9,7 @@ ExecStartPre=/bin/chown {{ redis_user }}:{{ redis_group }} /var/run/redis
 ExecStart=/usr/local/bin/redis-server {{ redis_conf_file }}
 ExecStop=/usr/local/bin/redis-cli shutdown
 Group=redis
+LimitNOFILE={{ filemax_result.stdout_lines[0] }}
 PIDFile=/var/run/redis/{{ redis_port }}.pid
 Restart=always
 Type=forking

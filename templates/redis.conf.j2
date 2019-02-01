@@ -15,10 +15,12 @@ port {{ redis_port }}
 
 maxclients {{ filemax_result.stdout_lines[0] }}
 
+{% if redis_maxmemory_percentage is defined %}
 maxmemory {{
   ((redis_maxmemory_percentage / 100) * (ansible_memtotal_mb * 1024 * 1024)) |
   round | int | abs
 }}
+{% endif %}
 
 save ""
 
